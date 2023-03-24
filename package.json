@@ -1,15 +1,20 @@
 {
   "name": "sum_of_arr",
-  "version": "1.1.0",
-  "description": "Bu package ning vazifasi, 3ta. \n1-arrayning ichidagi barcha sonlarni yig'indisini hisoblab yangi qiymat qaytaradi. \n2-stringni indeksi bilan harflarini qaytaradi. \n3-Raqamlarni indeks bilan bir dona raqamni qaytaradi.",
-  "main": "index.js",
+  "version": "1.1.1",
+  "description": "Bu package ba'zi takrorlanadigan funksiyalarni method shakliga keltirb qo'yilgan holati",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "array",
-    "list hisoblab beradigan",
-    "array hisobla"
+    "arraylist",
+    "hisoblab",
+    "beradiganarray",
+    "hisoblaString",
+    "metodArray",
+    "metodArray",
+    "countingArray",
+    "sortString",
+    "sortObjects are equal"
   ],
   "author": "Zokirkhon Kotibkhonov",
   "license": "MIT"
