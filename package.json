@@ -1,6 +1,6 @@
 {
   "name": "sum_of_arr",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Bu package ba'zi takrorlanadigan funksiyalarni method shakliga keltirb qo'yilgan holati",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
