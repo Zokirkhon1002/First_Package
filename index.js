@@ -14,7 +14,10 @@ module.exports.sum = function sum(/** @type {number[]} */ arr) {
  * @param str string kiriting
  * @param index string uchun biror indeks kiriting kiriting
  */
-module.exports.strIndex = function strIndex(/** @type {string} */ str, /** @type {string | number} */ index) {
+module.exports.strIndex = function strIndex(
+  /** @type {string} */ str,
+  /** @type {string | number} */ index
+) {
   return str[index];
 };
 
@@ -210,8 +213,7 @@ module.exports.isPrime = function isPrime(n) {
  * @example console.log(encodedId(11185223574343884)) // Zokirkhon
  */
 module.exports.encodedId = function encodeId(n) {
-  let all =
-    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("");
+  let all = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("");
   if (n === undefined) return false;
   let [len, encoded] = [all.length, []];
   if (n == 0) return all[0];
@@ -234,8 +236,7 @@ module.exports.encodedId = function encodeId(n) {
  * @example console.log(decodeId("Zokirkhon"))
  */
 module.exports.decodedId = function decodeId(id) {
-  let all =
-    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("");
+  let all = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split("");
   if (id === undefined) return false;
   let [len, decoded] = [all.length, 0];
   let idLen = id.split("").length;
@@ -265,6 +266,47 @@ module.exports = Number.prototype.base10String = function base10String() {
   }
   base10StringHelper(this);
   return Number(binaryString);
+};
+
+/**
+ * @description bu funksiyaning vazifasi
+ * stringni ichidagi raqamlarni kiritilgan character bilan bo'lib beradi
+ * @param {Number} every raqam kiriting, default=3
+ * @param {String} withChar string ichida character kiritin, default=","
+ * @returns string;
+ * @example
+ * 1 : "123456".numberSplitter() => "123,456"
+ * 2 : "123456.12".numberSplitter() => "123,456.12"
+ * 3 : "1234567".numberSplitter(4,",") => "123,4567"
+ * 4 : "1234567.12".numberSplitter(4, "-") => "123-4567.12"
+ */
+module.exports = String.prototype.numberSplitter = function numberSplitter(
+  every = 3,
+  withChar = ","
+) {
+  const regexPattern = `(?<=\\d)(?=(\\d{${every}})+(?!\\d))`;
+  const regex = new RegExp(regexPattern, "g");
+  return this.replace(regex, withCharacter);
+};
+
+/**
+ * @description bu funksiyaning vazifasi
+ * stringni ichidagi raqamlarni kiritilgan character bilan bo'lib beradi
+ * @param {Number} every raqam kiriting, default=4
+ * @param {String} withChar string ichida character kiritin, default="-"
+ * @returns string;
+ * @example
+ * 1 : "1234QWER5678ASDF".numberSplitter() => "1234-QWER-5678-ASDF"
+ * 2 : "ASDFZXCV1234".numberSplitter() => "ASDF-ZXCV-1234"
+ * 3 : "ASDFZXCV1234".numberSplitter(4,"=") => "ASDF=ZXCV=1234"
+ */
+module.exports = String.prototype.stringSplitter = function stringSplitter(
+  every = 4,
+  withChar = "-"
+) {
+  const regexPattern = new RegExp(`.{1,${every}}`, "g");
+  const regexPatternCharacter = new RegExp(`${withChar}`, "g");
+  return this.replace(regexPatternCharacter, "").match(regexPattern)?.join(withChar);
 };
 
 // npm adduser
