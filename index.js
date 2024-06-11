@@ -309,6 +309,43 @@ module.exports = String.prototype.stringSplitter = function stringSplitter(
   return this.replace(regexPatternCharacter, "").match(regexPattern)?.join(withChar);
 };
 
+/**
+ * 
+ * @param {string} date "2024-06-15"
+ * @returns {number} 167 
+ * @description [31, 28, 31, 30, 31, 15] = 167
+ */
+function dayOfYear(date) {
+  let [yyyy, mm, dd] = date?.split("-");
+  let result = 0;
+  mm = Number(mm) - 1;
+  dd = Number(dd);
+  yyyy = Number(yyyy);
+  if (mm === 0) {
+    return dd;
+  }
+  let month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+  for (let i = 0; i < 12; i++) {
+    if (i === mm) {
+      result += dd;
+      break;
+    }
+    result += month[i];
+  }
+
+  function isLeapYear(y) {
+    return y % 4 === 0 && (y % 100 !== 0 || y % 400 === 0) && mm > 1;
+  }
+  if (isLeapYear(yyyy)) {
+    result += 1;
+  }
+
+  return result;
+}
+
+exports.dayOfYear = dayOfYear;
+
 // npm adduser
 // npm login
 // npm publish
